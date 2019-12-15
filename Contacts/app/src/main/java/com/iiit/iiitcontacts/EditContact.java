@@ -58,7 +58,6 @@ public class EditContact extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                    // Checks for Valid Email and phone number.
                     if (edit_name.getText().toString().isEmpty()) {
                         Snackbar.make(view, "Name cannot be empty", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
@@ -79,16 +78,13 @@ public class EditContact extends AppCompatActivity {
                         mItem.number = edit_number.getText().toString();
                         mItem.email = (edit_email.getText().toString());
 
-                        //Sorting the list to display contacts in alphabetical order
                         Collections.sort(DummyContent.ITEMS);
 
                         Intent newIntent = new Intent(EditContact.this, ContactListActivity.class);
 
-                        // Clearing Stack so that the previous version of Detail activity (unmodified) is not called on pressing back button.
                         newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                        // Passing a flag to Main Activity (ContactListAcitvity) to stop reading contacts from phone on restarting of that activity.
                         newIntent.putExtra("flag", true);
                         startActivity(newIntent);
 

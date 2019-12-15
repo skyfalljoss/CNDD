@@ -68,16 +68,14 @@ public class ContactDetailFragment extends Fragment {
             Bitmap image = null;
             Drawable drawable;
 
-            // Setting the contact photo for the contact., particularly on the App Bar
             if(!mItem.getPhoto().equalsIgnoreCase("") && mItem.getPhoto() != null){
                 image = BitmapFactory.decodeFile(mItem.getPhoto());
 
-                // If contact has an existing Image show this on detail page.
                 if(image!=null){
                     drawable = new BitmapDrawable(getResources(), image);
                     holder.setBackground(drawable);
                 }
-                // Else set the default image on the detail page.
+
                 else{
                     image = BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.ic_contacts_launcher);
                     drawable = new BitmapDrawable(getResources(), image);
@@ -92,7 +90,7 @@ public class ContactDetailFragment extends Fragment {
 
             }
 
-            //Display rest of the details
+
             ((TextView) rootView.findViewById(R.id.contact_detail1)).setText(mItem.name);
             ((TextView) rootView.findViewById(R.id.contact_detail2)).setText(mItem.number);
             ((TextView) rootView.findViewById(R.id.contact_detail3)).setText(mItem.email);
@@ -100,7 +98,6 @@ public class ContactDetailFragment extends Fragment {
         }
 
 
-        // Calling Email App on click of Email button
         textView_email = (TextView) rootView.findViewById(R.id.contact_detail3);
 
         image_email = (ImageView) rootView.findViewById(R.id.email_image);
@@ -110,7 +107,7 @@ public class ContactDetailFragment extends Fragment {
                 Intent intent = null, chooser = null;
 
                 String email = textView_email.getText().toString();
-                // Check for empty email
+
                 if (email.equalsIgnoreCase("")) {
                     Snackbar.make(view, "Empty Email Address", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
@@ -128,7 +125,6 @@ public class ContactDetailFragment extends Fragment {
         });
 
 
-        // Calling the phone app, on the click of call button
         textView_number = (TextView) rootView.findViewById(R.id.contact_detail2);
         image_number = (ImageView) rootView.findViewById(R.id.number_image);
         image_number.setOnClickListener(new View.OnClickListener() {

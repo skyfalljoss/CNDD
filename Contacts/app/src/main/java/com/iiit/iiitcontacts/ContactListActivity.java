@@ -50,7 +50,7 @@ public class ContactListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contact_list);
 
         Boolean flag = false;
-        // Bundle check to stop this activity from reading phone contacts on restart (When restarted from edit and create contact).
+
         Bundle bundle = getIntent().getExtras();
 
         if (bundle != null) {
@@ -65,7 +65,6 @@ public class ContactListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        // floating button for create contact
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab1);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +98,7 @@ public class ContactListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 DummyContent.DummyItem item = (DummyContent.DummyItem) view.getTag();
 
-                // check for tablet mode
+
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
                     arguments.putString(ContactDetailFragment.ARG_ITEM_ID, item.id);
@@ -139,7 +138,7 @@ public class ContactListActivity extends AppCompatActivity {
             DummyContent.DummyItem dummyItem = mValues.get(position);
             Bitmap image = null;
 
-            // Binding Contact Photo.
+
             if (!dummyItem.getPhoto().equalsIgnoreCase("") && dummyItem.getPhoto() != null) {
                 image = BitmapFactory.decodeFile(dummyItem.getPhoto());
                 if (image != null) {
@@ -178,19 +177,19 @@ public class ContactListActivity extends AppCompatActivity {
     public void readContacts() {
 
         Uri uri = ContactsContract.Contacts.CONTENT_URI;
-        //Fetching contact details into cursor in Ascending Order
+
         Cursor contactCursor = this.getContentResolver().query(uri, null, null,
                 null, ContactsContract.Contacts.DISPLAY_NAME + " ASC ");
 
         if (contactCursor.moveToFirst()) {
             do {
-                //Getting contact ID
+
                 long contactID = contactCursor.getLong(contactCursor.getColumnIndex("_ID"));
-                //URI to get data of a contact
+
                 Uri dataURI = ContactsContract.Data.CONTENT_URI;
-                //Cursor for the given contact details
+
                 Cursor dataCursor = getContentResolver().query(dataURI, null, ContactsContract.Data.CONTACT_ID + "=" + contactID, null, null);
-                //Strings for retrieving all values of a contact
+
 
                 String contact_name = "";
 
@@ -206,7 +205,7 @@ public class ContactListActivity extends AppCompatActivity {
                 String homeEmail = "";
                 String otherEmail = "";
 
-                //Start getting details of a contact
+
                 if (dataCursor.moveToFirst()) {
                     contact_name = dataCursor.getString(dataCursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
                     do {
@@ -229,7 +228,7 @@ public class ContactListActivity extends AppCompatActivity {
                                     break;
                             }
                         }
-                        //EMAIL
+
                         if (contact_type_data.equals(ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE)) {
                             String temp = dataCursor.getString(dataCursor.getColumnIndex("data1"));
                             switch (dataCursor.getInt(dataCursor.getColumnIndex("data2"))) {
@@ -245,7 +244,7 @@ public class ContactListActivity extends AppCompatActivity {
 
                         }
 
-                        //PHOTO
+
 
                         if (contact_type_data.equals(ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE)) {
                             photo_byte = dataCursor.getBlob(dataCursor.getColumnIndex("data15"));

@@ -24,7 +24,6 @@ public class ContactDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
-        //Floating button for editing
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab2);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,7 +35,6 @@ public class ContactDetailActivity extends AppCompatActivity {
                 number = (TextView) findViewById(R.id.contact_detail2);
                 email = (TextView) findViewById(R.id.contact_detail3);
 
-                // Passing Contact details to edit activity on click of Edit floating button
                 intent.putExtra("name" , name.getText().toString());
                 intent.putExtra("number" , number.getText().toString());
                 intent.putExtra("email" , email.getText().toString());
@@ -44,7 +42,6 @@ public class ContactDetailActivity extends AppCompatActivity {
             }
         });
 
-        // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(false);
@@ -62,14 +59,5 @@ public class ContactDetailActivity extends AppCompatActivity {
         }
     }
 
-    /*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            NavUtils.navigateUpTo(this, new Intent(this, ContactListActivity.class));
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
+
 }
