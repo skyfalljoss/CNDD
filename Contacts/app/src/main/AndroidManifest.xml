@@ -21,7 +21,7 @@
         </activity>
         <activity
             android:name=".ContactDetailActivity"
-            android:label="@string/title_contact_detail"
+            android:label="@string/title_contact_detail"    
             android:parentActivityName=".ContactListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
